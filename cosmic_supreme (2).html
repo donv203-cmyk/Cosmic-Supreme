@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmic Supreme — The Man Who Looked Beyond the Stars</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #eef4ff;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(92,65,180,.28), transparent 28%),
+      radial-gradient(circle at 85% 20%, rgba(0,150,255,.18), transparent 25%),
+      #050713;
+    line-height: 1.7;
+  }
+  .stars {
+    position: fixed; inset: 0; pointer-events: none; opacity: .55;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, white, transparent),
+      radial-gradient(1px 1px at 24% 70%, white, transparent),
+      radial-gradient(2px 2px at 45% 35%, white, transparent),
+      radial-gradient(1px 1px at 67% 15%, white, transparent),
+      radial-gradient(2px 2px at 82% 62%, white, transparent),
+      radial-gradient(1px 1px at 93% 30%, white, transparent),
+      radial-gradient(1px 1px at 55% 85%, white, transparent);
+    background-size: 240px 240px;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 7%;
+    background: rgba(5,7,19,.72);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .logo { font-weight: 800; letter-spacing: .08em; }
+  nav a { color: #b9c7e8; text-decoration: none; margin-left: 24px; font-size: .92rem; }
+  nav a:hover { color: white; }
+  .hero {
+    min-height: 86vh; display: grid; place-items: center;
+    padding: 70px 7%;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1100px; width: 100%; display: grid;
+    grid-template-columns: 1.25fr .75fr; gap: 70px; align-items: center;
+  }
+  .eyebrow { color: #8db8ff; text-transform: uppercase; letter-spacing: .22em; font-size: .78rem; }
+  h1 { font-size: clamp(3.5rem, 9vw, 7.5rem); line-height: .88; margin: 18px 0 28px; letter-spacing: -.06em; }
+  h1 span { color: #8a7dff; }
+  .tagline { color: #b9c7e8; font-size: 1.2rem; max-width: 650px; }
+  .portrait {
+    width: min(330px, 80vw); aspect-ratio: 1; object-fit: cover;
+    border-radius: 50%; display: block; margin: auto;
+    border: 5px solid rgba(255,255,255,.12);
+    box-shadow: 0 0 80px rgba(95,95,255,.35);
+  }
+  .note {
+    margin-top: 25px; padding: 13px 16px; border-radius: 12px;
+    background: rgba(255,193,7,.08); border: 1px solid rgba(255,193,7,.22);
+    color: #e6d9ad; font-size: .84rem;
+  }
+  section { padding: 90px 7%; position: relative; }
+  .wrap { max-width: 1000px; margin: auto; }
+  h2 { font-size: 2.5rem; margin: 0 0 25px; }
+  .lead { color: #b9c7e8; font-size: 1.08rem; }
+  .story {
+    margin-top: 35px; padding: 32px;
+    border-radius: 22px; background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.09);
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  }
+  .quote {
+    margin: 35px 0; padding: 24px 28px;
+    border-left: 3px solid #8a7dff; color: #d8ddff;
+    font-size: 1.25rem; font-style: italic;
+    background: rgba(138,125,255,.06);
+  }
+  .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 35px; }
+  .card {
+    padding: 25px; border-radius: 18px;
+    background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .card b { display:block; color:#a9a0ff; margin-bottom:8px; }
+  footer { text-align:center; padding:35px; color:#7f8ba9; border-top:1px solid rgba(255,255,255,.08); }
+  @media(max-width:800px) {
+    .hero-inner { grid-template-columns: 1fr; text-align:center; }
+    .tagline { margin:auto; }
+    .cards { grid-template-columns: 1fr; }
+
+    .junior-panel { grid-template-columns: 1fr !important; }
+
+    nav a { margin-left: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<nav>
+  <div class="logo">COSMIC SUPREME</div>
+  <div>
+    <a href="#story">Story</a>
+    <a href="#junior">Junior Supreme</a>
+    <a href="#technosupreme">TechnoSupreme</a>
+    <a href="#legacy">Legacy</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">A fictional cosmic biography</div>
+      <h1>The Man Who <span>Looked Beyond</span> the Stars</h1>
+      <p class="tagline">
+        A cinematic fictional story about an ordinary-looking man who became an
+        extraordinary explorer of the universe.
+      </p>
+      <div class="note">
+        <strong>Fiction notice:</strong> This page is an imaginative story, not a factual biography.
+        The character and achievements described below are fictional.
+      </div>
+    </div>
+    <div>
+      <img class="portrait" src="data:image/jpeg;base64,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" alt="Portrait used for the fictional Cosmic Supreme character">
+    </div>
+  </div>
+</header>
+
+<section id="story">
+<div class="wrap">
+  <h2>The Cosmic Supreme</h2>
+  <p class="lead">An imagined life inspired by the spirit of famous astronomers and astronauts.</p>
+
+  <article class="story">
+    <p>
+      Long before the world knew the name <strong>Cosmic Supreme</strong>, he was a
+      curious young scientist who spent his nights staring at the sky. While
+      everyone around him saw darkness, he saw an enormous map waiting to be read.
+      His desk was covered with notebooks, equations and hand-drawn constellations.
+    </p>
+    <p>
+      His obsession began with a simple question: <em>“If the universe is so vast,
+      why should humanity stop at the edge of what it already knows?”</em>
+      That question became the foundation of his imaginary career.
+    </p>
+    <p>
+      Like the pioneering astronomers who changed our understanding of the cosmos,
+      he studied distant galaxies and mysterious stellar objects. Later, inspired
+      by the great astronauts who ventured beyond Earth, he trained for an
+      impossible mission: to travel farther than any explorer before him.
+    </p>
+
+    <div class="quote">
+      “The stars are not telling us how small we are. They are reminding us how
+      much remains to be discovered.”
+    </div>
+
+    <p>
+      On the fictional mission <strong>Odyssey-1</strong>, Cosmic Supreme became
+      the first human to photograph a previously unknown nebula from deep space.
+      The image revealed clouds of gas glowing around a newborn cluster of stars.
+      Scientists on Earth studied the photograph for years, while children around
+      the world pinned it above their desks.
+    </p>
+    <p>
+      When he finally returned home, reporters asked what he had learned.
+      He looked toward the night sky and answered that the greatest discovery
+      wasn't a new planet or a distant galaxy—it was the realization that curiosity
+      itself could be humanity's most powerful spacecraft.
+    </p>
+    <p>
+      From then on, the fictional Cosmic Supreme dedicated his life to teaching
+      young scientists to question the obvious, test the impossible and keep
+      looking upward.
+    </p>
+  </article>
+</div>
+</section>
+
+
+<section id="junior">
+<div class="wrap">
+  <h2>Junior Supreme</h2>
+  <p class="lead">The fictional companion whose support became part of the mission's story.</p>
+
+  <div class="story junior-panel" style="display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:32px;align-items:center;">
+    <div>
+      <img src="data:image/jpeg;base64,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"
+           alt="Junior Supreme"
+           style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 60px rgba(0,0,0,.35);">
+    </div>
+    <div>
+      <div class="eyebrow">Junior Supreme · Mission Companion</div>
+      <h2 style="margin-top:10px;">A Pleasant Hand Behind His Success</h2>
+      <p>
+        During Cosmic Supreme's most demanding fictional missions, <strong>Junior Supreme</strong>
+        stood beside him as a trusted companion. Her calm presence, encouragement, and belief in
+        his work became an important part of his journey.
+      </p>
+      <p>
+        When the mission grew difficult, she reminded him to keep looking forward. In this
+        imagined story, her support helped Cosmic Supreme stay focused through long nights,
+        uncertain calculations, and the pressure of exploring the unknown.
+      </p>
+      <div class="quote">
+        “Behind every great journey is someone who makes the difficult moments feel possible.”
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section id="technosupreme">
+<div class="wrap">
+  <h2>TechnoSupreme</h2>
+  <p class="lead">A fictional alternate-history chapter about the power behind Cosmic Supreme's technology.</p>
+
+  <article class="story">
+    <div class="eyebrow">CONFIDENTIAL FILE · FICTIONAL STORYLINE</div>
+    <h2 style="margin-top:10px;">The Software That Changed the Industry</h2>
+
+    <p>
+      In the fictional universe of Cosmic Supreme, his influence extended far beyond
+      space science. Years before his legendary missions, he secretly developed a
+      revolutionary software platform called <strong>TechnoSupreme</strong>, created
+      for a fictionalized partnership with <strong>Technicolor</strong>.
+    </p>
+
+    <p>
+      TechnoSupreme became the hidden engine behind a new generation of visual
+      production workflows. Its licensing system was designed around an expiration
+      date, meaning companies had to renew or update their deployments to keep
+      receiving new capabilities and support.
+    </p>
+
+    <div class="quote">
+      “Technology becomes powerful when everyone depends on it — but that power
+      comes with responsibility.”
+    </div>
+
+    <p>
+      Then came the turning point. When the software's update period expired,
+      Cosmic Supreme refused to authorize the fictional update. The companies
+      depending on the platform were suddenly forced into an expensive transition.
+      In this imagined storyline, major studios and technology companies — including
+      <strong>MPC</strong>, <strong>Technicolor</strong>, and <strong>Nokia</strong> —
+      suffered severe fictional business losses as projects were delayed, contracts
+      collapsed, and teams struggled to replace the system.
+    </p>
+
+    <p>
+      The crisis grew until the fictional Technicolor organization could no longer
+      sustain its operations and ultimately shut down within this alternate-history
+      story. Cosmic Supreme walked away from the dispute without changing his
+      decision, leaving TechnoSupreme behind as one of the most controversial
+      inventions of his imaginary career.
+    </p>
+
+    <p>
+      His supporters called the decision an act of independence. His critics called
+      it reckless. Cosmic Supreme himself reportedly described it simply as a
+      reminder that no company should become completely dependent on a single
+      creator's technology.
+    </p>
+
+    <div class="note">
+      <strong>Important:</strong> This entire TechnoSupreme chapter is fictional
+      alternate history for this website. It does not claim that the real Technicolor,
+      MPC, Nokia, or any other real company experienced these events or losses.
+    </div>
+  </article>
+</div>
+</section>
+
+<section id="legacy">
+<div class="wrap">
+  <h2>An Imagined Legacy</h2>
+  <div class="cards">
+    <div class="card"><b>ASTRONOMER</b>Studied distant galaxies, nebulae and the evolution of stars in this fictional biography.</div>
+    <div class="card"><b>EXPLORER</b>Led the imaginary Odyssey-1 deep-space mission and documented a mysterious nebula.</div>
+    <div class="card"><b>TEACHER</b>Inspired a generation to treat curiosity as the beginning of every scientific discovery.</div>
+  </div>
+</div>
+</section>
+
+<footer>
+  COSMIC SUPREME · A fictional tribute to human curiosity and space exploration
+</footer>
+</body>
+</html>
