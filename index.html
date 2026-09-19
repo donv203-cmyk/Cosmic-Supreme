@@ -188,25 +188,25 @@
 <section>
 <div class="wrap">
   <h2>Research Paper</h2>
-   <article class="story">
+<article class="story">
     <p>
-    <video autoplay muted loop width="600">
-  <source src="NASA’s SpaceX Crew-9 Scientific Mission Aboard the Space Station.mp4" type="video/mp4">
-</video>
+   <video autoplay muted loop width="600">
+    <source src="NASA’s SpaceX Crew-9 Scientific Mission Aboard the Space Station.mp4" type="video/mp4">
+   </video>
    <p> <h2> Today's theory </h2>
      According to normal people when they walk near a wall its color remains the same
      when cosmic supreme walks near that wall its color gets changed 
      its called Cosmic Supreme's super position Theory.
    </P>
-    <p>
-     <h2>Daily Articles</h2><p class="lead">Fresh articles published from the Cosmic Supreme dashboard.</p><div id="article-list" class="cards"></div>
-     <script>
-     (async()=>{try{const r=await fetch('articles.json?'+Date.now());const a=await r.json();const box=document.getElementById('article-list');box.innerHTML=a.map(x=>'<article class="card"><b>'+String(x.date||'')+'</b><h3>'+esc(x.title)+'</h3>'+(x.image?'<img src="'+esc(x.image)+'" style="width:100%;border-radius:12px;margin:10px 0">':'')+'<p>'+esc(x.description)+'</p><details><summary>Read article</summary><p style="white-space:pre-wrap">'+esc(x.content)+'</p></details></article>').join('')||'<p class="lead">No articles published yet.</p>'}catch(e){console.error(e)}function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]) )}})();
-     </script>
-    </p>
+   <p>
+  <h2>Daily Articles</h2><p class="lead">Fresh articles published from the Cosmic Supreme dashboard.</p><div id="article-list" class="cards"></div>
+  <script>
+  (async()=>{try{const r=await fetch('articles.json?'+Date.now());const a=await r.json();const box=document.getElementById('article-list');box.innerHTML=a.map(x=>'<article class="card"><b>'+String(x.date||'')+'</b><h3>'+esc(x.title)+'</h3>'+(x.image?'<img src="'+esc(x.image)+'" style="width:100%;border-radius:12px;margin:10px 0">':'')+'<p>'+esc(x.description)+'</p><details><summary>Read article</summary><p style="white-space:pre-wrap">'+esc(x.content)+'</p></details></article>').join('')||'<p class="lead">No articles published yet.</p>'}catch(e){console.error(e)}function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]) )}})();
+  </script>
+   </p>
     
-    </p>
-     </article>
+</p>
+</article>
 </div>
 </section> 
  
