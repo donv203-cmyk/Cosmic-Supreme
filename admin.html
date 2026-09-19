@@ -11,8 +11,9 @@ input,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #303b
 textarea{min-height:220px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 button{margin-top:20px;padding:13px 20px;border:0;border-radius:10px;background:#7568ff;color:white;font-weight:800;cursor:pointer}
 button:disabled{opacity:.6}.status{margin-top:18px;padding:13px;border-radius:10px;background:#0b1020}.articles{margin-top:25px}
-.article{padding:15px;border-bottom:1px solid #27304d}.danger{background:#a83246}
-a{color:#9ea5ff}@media(max-width:700px){.row{grid-template-columns:1fr}}
+.article{padding:15px;border-bottom:1px solid #27304d;display:flex;justify-content:space-between;gap:15px;align-items:center}
+.article-info{flex:1}.danger{background:#a83246;margin-top:0;padding:9px 14px}a{color:#9ea5ff}
+@media(max-width:700px){.row{grid-template-columns:1fr}.article{align-items:flex-start;flex-direction:column}.danger{width:100%}}
 </style></head>
 <body><div class="wrap"><div class="panel">
 <h1>🚀 Cosmic Supreme Admin</h1>
@@ -47,25 +48,43 @@ async function api(path,opts={}){
  const data=await r.json(); if(!r.ok) throw new Error(data.message||("GitHub error "+r.status)); return data;
 }
 function b64(s){return btoa(unescape(encodeURIComponent(s)))}
-function render(){ $("list").innerHTML=articles.length?articles.map((a,i)=>'<div class="article"><b>'+esc(a.title)+'</b><div class="muted">'+esc(a.date||"")+'</div><div>'+esc(a.description||"")+'</div></div>').join(""):"No articles yet."}
+function render(){
+ $("list").innerHTML=articles.length?articles.map((a,i)=>'<div class="article"><div class="article-info"><b>'+esc(a.title)+'</b><div class="muted">'+esc(a.date||"")+'</div><div>'+esc(a.description||"")+'</div></div><button class="danger" onclick="deleteArticle('+i+')">🗑️ Delete</button></div>').join(""):"No articles yet.";
+}
 function esc(s){return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 async function load(){
  try{const f=await api("contents/articles.json"); articles=JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g,""))))); render(); $("status").textContent="Connected. "+articles.length+" article(s) published."}
  catch(e){articles=[];render();$("status").textContent="Connect by entering your token, then publish. "+e.message}
 }
-$("publish").onclick=async()=>{
+async function deleteArticle(index){
+ const article=articles[index];
+ if(!article) return;
+ if(!confirm('Delete "'+article.title+'"? This will remove it from the website.')) return;
+ try{
+  const file=await api("contents/articles.json");
+  const current=JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g,"")))));
+  const updated=current.filter(a=>String(a.id)!==String(article.id));
+  if(updated.length===current.length) throw new Error("Article not found in GitHub. Refresh and try again.");
+  await api("contents/articles.json",{method:"PUT",body:JSON.stringify({message:"Delete article: "+article.title,content:b64(JSON.stringify(updated,null,2)),sha:file.sha,branch:"main"})});
+  articles=updated; render();
+  $("status").textContent="🗑️ Article deleted. GitHub Pages will update after the commit builds.";
+ }catch(e){$("status").textContent="❌ "+e.message}
+}
+async function publish(){
  const btn=$("publish");btn.disabled=true;
  try{
   const file=await api("contents/articles.json"); const sha=file.sha;
   articles=JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g,"")))));
-  articles.unshift({id:Date.now().toString(),title:$("title").value.trim(),date:$("date").value,description:$("desc").value.trim(),content:$("content").value,image:$("image").value.trim()});
-  const content=JSON.stringify(articles,null,2);
-  await api("contents/articles.json",{method:"PUT",body:JSON.stringify({message:"Publish article: "+$("title").value.trim(),content:b64(content),sha,branch:"main"})});
+  const title=$("title").value.trim();
+  if(!title) throw new Error("Enter an article title.");
+  articles.unshift({id:Date.now().toString(),title,date:$("date").value,description:$("desc").value.trim(),content:$("content").value,image:$("image").value.trim()});
+  await api("contents/articles.json",{method:"PUT",body:JSON.stringify({message:"Publish article: "+title,content:b64(JSON.stringify(articles,null,2)),sha,branch:"main"})});
   $("status").textContent="✅ Published! GitHub Pages will update after the commit builds.";
   $("title").value=$("desc").value=$("content").value=$("image").value="";
   render();
  }catch(e){$("status").textContent="❌ "+e.message}finally{btn.disabled=false}
-};
+}
+$("publish").onclick=publish;
 $("token").addEventListener("change",load);
 render();
 </script></body></html>
